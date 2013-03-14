@@ -11,6 +11,23 @@
  */
 function validateFields()
 {
+	var itxName = document.getElementById('projectName');
+	var idStartDate = document.getElementById('startDate');
+
+	if (isEmpty(itxName.value))
+	{
+		alert.show('You must enter a project name');
+		return false;
+	}
+
+	if (isEmpty(idStartDate.value))
+	{
+		alert.show('You must enter a start date');
+		return false;
+	}
+
+	// at this point, all information is valid
+	return true;
 }
 
 /**
@@ -19,5 +36,5 @@ function createProject()
 {
 	// validate all fields, if information is missing or
 	// incorrect return
-	if (!informationValid()) return;
+	if (!validateFields()) return;
 }
