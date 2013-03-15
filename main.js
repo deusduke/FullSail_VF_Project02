@@ -58,7 +58,10 @@ function createProject()
 
 	project.name = document.getElementById('projectName').value;
 	project.startDate = document.getElementById('startDate').value;
-	project.type = document.getElementById('mainForm').type;
+
+	var rbuttons = document.getElementById('mainForm').type;
+	project.type = getValueFromRadioButtons(rbuttons);
+
 	project.priority = document.getElementById('mainForm').priority.value;
 
 	console.log(project);
@@ -100,8 +103,20 @@ function showAllProjects(){
 }
 
 // clear all stored data
-function showAllProjects(){
+function clearAllProjects(){
 	localStorage.clear();	
 
 	alert("All projects have been removed");
+}
+
+// get the value from an array of radiout button
+function getValueFromRadioButtons(arrRadioButtons) {
+	for(var i in arrRadioButtons) {
+		var rb = arrRadioButtons[i];
+
+		if (rb.checked) return rb.value;
+	}
+
+	// nothing was checked
+	return null;
 }
