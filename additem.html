@@ -12,14 +12,18 @@
 		<meta name="robots" content="index, nofollow">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="styles.css">
 		<script type="text/javascript" src="main.js"></script>
 
 		<title>Project List</title>
 	</head>
 	<body>
-		<h1>Create a Project</h1>
-		<a href="#" onclick="clearAllProjects()">Delete All Projects</a><a href="#" onclick="showAllProjects()">Display Projects</a>
+		<header>
+			<h1>Project Tracker</h1>
+		</header>
+		<a id="delAll" href="#" onclick="clearAllProjects()">Delete All Projects</a>
+		<a id="showAll" href="#" onclick="showAllProjects()">Display Projects</a>
+		<a id="addNew" href="#" onclick="addNew()" class="hide">Add New Project</a>
 
 		<form id="mainForm" action="index.html">
 			<fieldset>
@@ -48,5 +52,10 @@
 
 			<input type="hidden">
 		</form>
+
+		<div id='project_list' class="hide">
+			<!-- Used as a placed holder to inject projects into -->
+		</div>
+
 	</body>
 </html>
