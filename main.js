@@ -42,4 +42,31 @@ function createProject()
 	// validate all fields, if information is missing or
 	// incorrect return
 	if (!validateFields()) return;
+
+	var project = {};
+
+	project.name = document.getElementById('projectName').value;
+	project.startDate = document.getElementById('startDate').value;
+	project.type = document.getElementById('mainForm').type;
+	project.priority = document.getElementById('mainForm').priority;
+
+	storeProject(project);
+}
+
+// send the project to local storage
+function storeProject(project) {
+	// convert to JSON and store in the database
+	data = JSON.stringify();
+
+	// use timestamp to make unique
+	localStorage.setItem((new Date()).getTime().toString(), data);
+}
+
+// retrieve all of our projects from local storage
+function retrieveProjects(project) {
+	// convert to JSON and store in the database
+	data = JSON.stringify();
+
+	// use timestamp to make unique
+	localStorage.setItem((new Date()).getTime().toString(), data);
 }
