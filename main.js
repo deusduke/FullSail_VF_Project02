@@ -59,7 +59,7 @@ function createProject()
 	project.name = document.getElementById('projectName').value;
 	project.startDate = document.getElementById('startDate').value;
 	project.type = document.getElementById('mainForm').type;
-	project.priority = document.getElementById('mainForm').priority;
+	project.priority = document.getElementById('mainForm').priority.value;
 
 	console.log(project);
 
@@ -76,7 +76,7 @@ function storeProject(project) {
 	data = JSON.stringify(project);
 
 	// use timestamp to make unique
-	localStorage.setItem((new Date()).getTime().toString(), data);
+	//localStorage.setItem((new Date()).getTime().toString(), data);
 }
 
 // retrieve all of our projects from local storage
@@ -97,4 +97,11 @@ function showAllProjects(){
 	projects = retrieveProjects();
 
 	console.log(projects);
+}
+
+// clear all stored data
+function showAllProjects(){
+	localStorage.clear();	
+
+	alert("All projects have been removed");
 }
