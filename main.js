@@ -12,9 +12,13 @@
 
 // utility function to create formatted string similar to .Net
 String.prototype.format = function() {
+	console.log(arguments);
+
 	str = this;
-	for (var i = 0; i < arguments.length; ++i) {
-		str = str.replace('{' + i.toString() + '}', arguments[i + 1]);
+
+	for (var i in arguments) {
+		str = str.replace('{' + i.toString() + '}', arguments[i]);
+		++i;
 	}
 
 	return str;
@@ -79,7 +83,7 @@ function storeProject(project) {
 	data = JSON.stringify(project);
 
 	// use timestamp to make unique
-	//localStorage.setItem((new Date()).getTime().toString(), data);
+	localStorage.setItem((new Date()).getTime().toString(), data);
 }
 
 // retrieve all of our projects from local storage
@@ -89,6 +93,7 @@ function retrieveProjects() {
 	// get all the data back out and convert back to projects
 	for (var i = 0; i < localStorage.length; i++){
 		var json = localStorage.getItem(localStorage.key(i));
+		console.log(json);
 		projects[i] = eval('({0})'.format(json));
 	}
 
