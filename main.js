@@ -13,7 +13,7 @@
 // utility function to create formatted string similar to .Net
 String.prototype.format = function() {
 	str = this;
-	for (int i = 0; i < arguments.length; ++i) {
+	for (var i = 0; i < arguments.length; ++i) {
 		str = str.replace('{' + i.toString() + '}', arguments[i + 1]);
 	}
 
@@ -61,24 +61,26 @@ function createProject()
 	project.type = document.getElementById('mainForm').type;
 	project.priority = document.getElementById('mainForm').priority;
 
+	console.log(project);
+
 	// store the date
 	storeProject(project);
 
 	// show all data
-	showAllProjects();
+	// showAllProjects();
 }
 
 // send the project to local storage
 function storeProject(project) {
 	// convert to JSON and store in the database
-	data = JSON.stringify();
+	data = JSON.stringify(project);
 
 	// use timestamp to make unique
 	localStorage.setItem((new Date()).getTime().toString(), data);
 }
 
 // retrieve all of our projects from local storage
-function retrieveProjects(project) {
+function retrieveProjects() {
 	var projects = new Array();
 
 	// get all the data back out and convert back to projects
@@ -88,4 +90,11 @@ function retrieveProjects(project) {
 	}
 
 	return projects;
+}
+
+// hide form and show the project list
+function showAllProjects(){
+	projects = retrieveProjects();
+
+	console.log(projects);
 }
