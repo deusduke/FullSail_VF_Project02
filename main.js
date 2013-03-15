@@ -10,6 +10,16 @@
  * @return {bool} true if valid, otherwise false
  */
 
+// utility function to create formatted string similar to .Net
+String.prototype.format = function() {
+	str = this;
+	for (int i = 0; i < arguments.length; ++i) {
+		str = str.replace('{' + i.toString() + '}', arguments[i + 1]);
+	}
+
+	return str;
+}
+
 function isBlank(str) {
     return (!str || /^\s*$/.test(str));
 }
@@ -43,6 +53,7 @@ function createProject()
 	// incorrect return
 	if (!validateFields()) return;
 
+	// build the project objet
 	var project = {};
 
 	project.name = document.getElementById('projectName').value;
@@ -50,7 +61,11 @@ function createProject()
 	project.type = document.getElementById('mainForm').type;
 	project.priority = document.getElementById('mainForm').priority;
 
+	// store the date
 	storeProject(project);
+
+	// show all data
+	showAllProjects();
 }
 
 // send the project to local storage
@@ -64,9 +79,13 @@ function storeProject(project) {
 
 // retrieve all of our projects from local storage
 function retrieveProjects(project) {
-	// convert to JSON and store in the database
-	data = JSON.stringify();
+	var projects = new Array();
 
-	// use timestamp to make unique
-	localStorage.setItem((new Date()).getTime().toString(), data);
+	// get all the data back out and convert back to projects
+	for (var i = 0; i < localStorage.length; i++){
+		var json = localStorage.getItem(localStorage.key(i));
+		projects[i] = eval('({0})'.format(json));
+	}
+
+	return projects;
 }
