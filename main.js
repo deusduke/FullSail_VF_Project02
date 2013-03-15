@@ -9,20 +9,25 @@
  * is displdyed
  * @return {bool} true if valid, otherwise false
  */
+
+function isBlank(str) {
+    return (!str || /^\s*$/.test(str));
+}
+
 function validateFields()
 {
 	var itxName = document.getElementById('projectName');
 	var idStartDate = document.getElementById('startDate');
 
-	if (isEmpty(itxName.value))
+	if (isBlank(itxName.value))
 	{
-		alert.show('You must enter a project name');
+		alert('You must enter a project name');
 		return false;
 	}
 
-	if (isEmpty(idStartDate.value))
+	if (isBlank(idStartDate.value))
 	{
-		alert.show('You must enter a start date');
+		alert('You must enter a start date');
 		return false;
 	}
 
